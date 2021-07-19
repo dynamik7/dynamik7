@@ -1,0 +1,22 @@
+name: test_dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
+
+jobs:
+  say_hello:
+    runs-on: [ self-hosted ]
+
+    steps:
+      - run: |
+          echo "Hello ${{ github.event.inputs.name }}!"
+          echo "- in ${{ github.event.inputs.home }}!"
